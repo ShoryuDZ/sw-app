@@ -7,6 +7,7 @@ import filmPoster3 from './media/3.jpg';
 import filmPoster4 from './media/4.jpg';
 import filmPoster5 from './media/5.jpg';
 import filmPoster6 from './media/6.jpg';
+import {useState, useEffect} from 'react';
 
 function App() {
 
@@ -18,15 +19,30 @@ function App() {
     5 : filmPoster5,
     6 : filmPoster6,
   }
+  
+  const [films, setFilms] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    (async() => {
+      const response = await fetch("https://swapi.dev/api/films/");
+      const data = await response.json();
+      const sorted = data.results.sort((x, y) => (x.episode_id > y.episode_id ? 1 : -1));
+      setFilms(sorted);
+    })();
+
+    setIsLoaded(true);
+  }, [])
 
   return (
     <div className="sw-app">
       <img className="center-logo" src={swlogo} alt="Star Wars Logo"></img>
       <div className="containers">
-        <MovieContainer title="Movie 1" order={1} description="A long winded description" imagesrc={imageLibrary[1]}/>
-        <MovieContainer title="Movie 2" order={2} description="An even more long winded description" imagesrc={imageLibrary[2]}/>
-        <MovieContainer title="Movie 3" order={1} description="A long winded description" imagesrc={imageLibrary[3]}/>
-        <MovieContainer title="Movie 4" order={2} description="An even more long winded description" imagesrc={imageLibrary[4]}/>
+        {isLoaded &&
+          films.map(film => {
+            return <MovieContainer title={film.title} order={film.episode_id} imagesrc={imageLibrary[film.episode_id]} description={film.opening_crawl} />
+          })
+        }
       </div>
     </div>
   );

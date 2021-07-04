@@ -3,14 +3,18 @@
     background-color: white;
     width: 47%;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movieTitle {
+    width: 100%;
 }
 
 .moviePoster {
-    display: inline;
-    vertical-align: top;
     margin: 15px;
 }
 
 .descText {
-    display: inline;
+    flex: 1;
 }
