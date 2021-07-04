@@ -1,5 +1,6 @@
 import './App.css';
 import MovieContainer from './components/movie-container/MovieContainer';
+import CharacterList from './components/character-list/CharacterList';
 import swlogo from './media/star_wars.png';
 import filmPoster1 from './media/1.jpg';
 import filmPoster2 from './media/2.jpg';
@@ -49,6 +50,9 @@ function App() {
           films.map(film => {
             return <MovieContainer title={film.title} order={film.episode_id} imagesrc={imageLibrary[film.episode_id]} description={film.opening_crawl} setFilm={() => setFilm(film.episode_id)} />
           })
+        }
+        {isCharacterList &&
+          <CharacterList characters={selectedFilm.characters} filmTitle={selectedFilm.title} />
         }
       </div>
     </div>
