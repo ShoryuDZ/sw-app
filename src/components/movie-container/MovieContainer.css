@@ -1,4 +1,16 @@
-.container-div {
-    margin-left: 60px;
+.container {
+    margin: 5px;
     background-color: white;
+    width: 47%;
+    padding: 10px;
+}
+
+.moviePoster {
+    display: inline;
+    vertical-align: top;
+    margin: 15px;
+}
+
+.descText {
+    display: inline;
 }
