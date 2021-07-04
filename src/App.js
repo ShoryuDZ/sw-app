@@ -22,7 +22,14 @@ function App() {
   
   const [films, setFilms] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isCharacterList, setIsCharacterList] = useState(false);
+  const [selectedFilm, setSelectedFilm] = useState({});
   
+  const setFilm = (episode_id) => {
+    setSelectedFilm(films.filter((filter) => filter.episode_id === episode_id)[0]);
+    setIsCharacterList(true);
+  }
+
   useEffect(() => {
     (async() => {
       const response = await fetch("https://swapi.dev/api/films/");
@@ -38,9 +45,9 @@ function App() {
     <div className="sw-app">
       <img className="center-logo" src={swlogo} alt="Star Wars Logo"></img>
       <div className="containers">
-        {isLoaded &&
+        {isLoaded && !isCharacterList &&
           films.map(film => {
-            return <MovieContainer title={film.title} order={film.episode_id} imagesrc={imageLibrary[film.episode_id]} description={film.opening_crawl} />
+            return <MovieContainer title={film.title} order={film.episode_id} imagesrc={imageLibrary[film.episode_id]} description={film.opening_crawl} setFilm={() => setFilm(film.episode_id)} />
           })
         }
       </div>

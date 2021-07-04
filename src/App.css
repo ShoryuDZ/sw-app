@@ -1,7 +1,12 @@
 .containers {
-  margin: 3%;
+  width: 1200px;
   flex-wrap: wrap;
   display: flex;
+  justify-content: center;
+  justify-self: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center-logo {

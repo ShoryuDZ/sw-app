@@ -6,6 +6,7 @@ const MovieContainer = (movieProps) => {
             <h3 className="movieTitle">{movieProps.title} ({movieProps.order})</h3>
             <img src={movieProps.imagesrc} className="moviePoster"/>
             <span className="descText">{movieProps.description}</span>
+            <button className="charactersButton" onClick={() => movieProps.setFilm()}>View Characters...</button>
         </div>
     )
 }
